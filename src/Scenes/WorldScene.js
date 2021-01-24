@@ -18,12 +18,21 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   create () {
-        var map = this.make.tilemap({ key: 'map' });
-        var tiles = map.addTilesetImage('spritesheet', 'tiles');
-	      var grass = map.createStaticLayer('Grass', tiles, 0, 0);
-        var obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
-        obstacles.setCollisionByExclusion([-1]);
-        this.player = this.physics.add.sprite(50, 100, 'player', 6);
+      this.cameras.main.setZoom(2);
+       // create the map
+    const map = this.make.tilemap({ key: 'map' });
+
+    // first parameter is the name of the tilemap in tiled
+    const tiles = map.addTilesetImage('spritesheet', 'tiles');
+
+    // creating the layers
+    map.createStaticLayer('Map', tiles, 0, 0);
+    const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
+
+    // make all tiles in obstacles collidable
+    obstacles.setCollisionByExclusion([-1]);
+
+        this.player = this.physics.add.sprite(100, 200, 'player', 6);
         this.physics.world.bounds.width = map.widthInPixels;
         this.physics.world.bounds.height = map.heightInPixels;
         this.player.setCollideWorldBounds(true);
@@ -59,12 +68,15 @@ export default class WorldScene extends Phaser.Scene {
         });
         this.physics.add.collider(this.player, obstacles);
 
-        this.spawns = this.physics.add.sprite(100, 450, 'player');
+        this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
         for(var i = 0; i < 30; i++) {
             var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
             var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
             // parameters are x, y, width, height
-            this.spawns.create(x, y, 20, 20);            
+            this.spawns.create(x, y, 20, 20);  
+            const enemy = this.physics.add.sprite(x, y, 'player', 1);
+                this.spawns.add(enemy);
+          
         }        
         this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
   }
