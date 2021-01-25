@@ -155,7 +155,8 @@ export default class WorldScene extends Phaser.Scene {
         }
   }
 
-  onMeetEnemy(player, zone) {        
+  onMeetEnemy(player, zone) {
+        this.sys.game.globals.score = this.score;   
         this.scene.start('GameOver');
     }
 

@@ -11,6 +11,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create () {
-    this.scene.start('World');
+    this.scene.start('Input');
   }
 };
