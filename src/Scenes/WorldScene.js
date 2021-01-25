@@ -85,11 +85,16 @@ export default class WorldScene extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
 
         // stars
-        const stars = this.physics.add.group({
-            key: 'star',
-            repeat: 11,
-            setXY: { x: 12, y: 50, stepX: 70 }
-        });
+        const stars = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
+        for(var i = 0; i < 20; i++) {
+            var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+            var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+            // parameters are x, y, width, height
+            stars.create(x, y, 20, 20);  
+            const star = this.physics.add.image(x, y, 'star');
+                stars.add(star);
+          
+        }
 
         // stars.children.iterate(function (child) {
 
@@ -151,9 +156,7 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   onMeetEnemy(player, zone) {        
-    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
-    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-    this.cameras.main.shake(300);
+        this.scene.start('GameOver');
     }
 
 collectStar(player, star){
