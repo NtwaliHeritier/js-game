@@ -9,6 +9,7 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   create() {
+    ApiHandling.addScore(this.sys.game.globals.playerName, this.sys.game.globals.score);
     this.myScore = this.add.text(
       config.width / 2 - 300,
       150,

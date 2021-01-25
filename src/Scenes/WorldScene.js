@@ -85,28 +85,21 @@ export default class WorldScene extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
 
         // stars
-        const stars = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
+         this.stars = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
         for(var i = 0; i < 20; i++) {
             var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
             var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-            // parameters are x, y, width, height
-            stars.create(x, y, 20, 20);  
+            
             const star = this.physics.add.image(x, y, 'star');
-                stars.add(star);
+                this.stars.add(star);
           
         }
 
-        // stars.children.iterate(function (child) {
-
-        //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
-        // });
-
         //collide
-        this.physics.add.collider(stars, map);
+        this.physics.add.collider(this.stars, map);
 
         //overlap
-        this.physics.add.overlap(this.player, stars, this.collectStar, null, this);
+        this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
         this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
   }
 
@@ -164,5 +157,9 @@ collectStar(player, star){
     star.disableBody(true, true);
     this.score += 10;
     this.scoreText.setText('Score: ' + this.score);
+    const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height); 
+    const mystar = this.physics.add.image(x, y, 'star');
+    this.stars.add(mystar);
     }
 };
