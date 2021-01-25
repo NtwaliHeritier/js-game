@@ -3,11 +3,16 @@ import 'phaser';
 export default class WorldScene extends Phaser.Scene {
    constructor () {
     super('World');
+    this.score = 0;
+    this.scoreText;
   }
 
   preload () {
     // map tiles
         this.load.image('tiles', 'assets/map/spritesheet.png');
+
+        this.load.image('star', 'assets/star.png');
+        this.load.image('zombie', 'assets/zombie-png.png');
         
         // map in json format
         this.load.tilemapTiledJSON('map', 'assets/map/map.json');
@@ -17,7 +22,12 @@ export default class WorldScene extends Phaser.Scene {
 
   }
 
+  collectStar(player, star){
+    star.disableBody(true, true);
+    }
+
   create () {
+      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
       this.cameras.main.setZoom(2);
        // create the map
     const map = this.make.tilemap({ key: 'map' });
@@ -69,16 +79,35 @@ export default class WorldScene extends Phaser.Scene {
         this.physics.add.collider(this.player, obstacles);
 
         this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
-        for(var i = 0; i < 30; i++) {
+        for(var i = 0; i < 20; i++) {
             var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
             var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
             // parameters are x, y, width, height
             this.spawns.create(x, y, 20, 20);  
-            const enemy = this.physics.add.sprite(x, y, 'player', 1);
+            const enemy = this.physics.add.sprite(x, y, 'zombie', 1);
                 this.spawns.add(enemy);
           
         }        
         this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
+
+        // stars
+        const stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY: { x: 120, y: 0, stepX: 70 }
+        });
+
+        // stars.children.iterate(function (child) {
+
+        //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+        // });
+
+        //collide
+        this.physics.add.collider(stars, map);
+
+        //overlap
+        // this.physics.add.overlap(this.player, stars, collectStar, null, this);
   }
 
   update(time, delta) {
