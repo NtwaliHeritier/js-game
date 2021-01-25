@@ -22,7 +22,7 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   create () {
-    //   this.cameras.main.setZoom(2);
+      this.cameras.main.setZoom(2);
        // create the map
     const map = this.make.tilemap({ key: 'map' });
 
@@ -88,7 +88,7 @@ export default class WorldScene extends Phaser.Scene {
         const stars = this.physics.add.group({
             key: 'star',
             repeat: 11,
-            setXY: { x: 120, y: 0, stepX: 70 }
+            setXY: { x: 12, y: 50, stepX: 70 }
         });
 
         // stars.children.iterate(function (child) {
