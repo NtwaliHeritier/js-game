@@ -4,7 +4,6 @@ export default class WorldScene extends Phaser.Scene {
    constructor () {
     super('World');
     this.score = 0;
-    this.scoreText;
   }
 
   preload () {
@@ -22,13 +21,8 @@ export default class WorldScene extends Phaser.Scene {
 
   }
 
-  collectStar(player, star){
-    star.disableBody(true, true);
-    }
-
   create () {
-      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-      this.cameras.main.setZoom(2);
+    //   this.cameras.main.setZoom(2);
        // create the map
     const map = this.make.tilemap({ key: 'map' });
 
@@ -107,7 +101,8 @@ export default class WorldScene extends Phaser.Scene {
         this.physics.add.collider(stars, map);
 
         //overlap
-        // this.physics.add.overlap(this.player, stars, collectStar, null, this);
+        this.physics.add.overlap(this.player, stars, this.collectStar, null, this);
+        this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
   }
 
   update(time, delta) {
@@ -159,5 +154,11 @@ export default class WorldScene extends Phaser.Scene {
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
     this.cameras.main.shake(300);
+    }
+
+collectStar(player, star){
+    star.disableBody(true, true);
+    this.score += 10;
+    this.scoreText.setText('Score: ' + this.score);
     }
 };
