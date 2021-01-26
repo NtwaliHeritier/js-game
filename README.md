@@ -40,11 +40,11 @@ To move the player:
 
 ## Screenshots
 
-![img](./Screenshots/SC-1.png)
+![img](./Screenshots/SC-1.PNG)
 
-![img](./Screenshots/SC-2.png)
+![img](./Screenshots/SC-2.PNG)
 
-![img](./Screenshots/SC-3.png)
+![img](./Screenshots/SC-3.PNG)
 
 ## Built With 🛠
 
