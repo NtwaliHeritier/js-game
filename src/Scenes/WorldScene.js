@@ -161,5 +161,10 @@ collectStar(player, star){
     const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height); 
     const mystar = this.physics.add.image(x, y, 'star');
     this.stars.add(mystar);
+
+    const v = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    const w = Phaser.Math.RND.between(0, this.physics.world.bounds.height); 
+    const myzombie = this.physics.add.image(x, y, 'zombie');
+    this.spawns.add(myzombie);
     }
 };
