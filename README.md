@@ -36,7 +36,7 @@ To move the player:
 
 ## Live Demo
 
-[Live demo](https://raw.githack.com/NtwaliHeritier/js-game/feature-branch/index.html/)
+[Live demo](https://pensive-booth-4d035b.netlify.app/)
 
 ## Screenshots
 
