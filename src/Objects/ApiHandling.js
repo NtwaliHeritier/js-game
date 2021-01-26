@@ -6,7 +6,7 @@ const ApiHandling = (() => {
     };
 
     fetch(
-      'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/moPgZTWHxTnA8yxsQQ79 /scores/',
+      'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/moPgZTWHxTnA8yxsQQ79/scores/',
       {
         method: 'POST',
         body: JSON.stringify(myscore),
