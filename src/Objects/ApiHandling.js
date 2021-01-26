@@ -1,16 +1,33 @@
 const ApiHandling = (()=>{
-  const addScore = async (name, score) => {
-    const obj = {name, score};
-    const data = await fetch("https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/0z8CWBMSFCikFw74hE0v/scores/", {
-      method: "POST",
-      body: JSON.stringify(obj),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' }
-    });
-    const response = data.json;
-    return response;
+  const addScore = (name, score) => {
+  let myscore = {
+    user: name,
+    score: score,
   };
 
-  return {addScore};
+  fetch(
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/moPgZTWHxTnA8yxsQQ79 /scores/',
+    {
+      method: 'POST',
+      body: JSON.stringify(myscore),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    }
+  )
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
+    .then((json) => console.log(json))
+    .catch((err) => console.log(err));
+};
+
+const showScores = async ()=> {
+  const data = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/moPgZTWHxTnA8yxsQQ79/scores/');
+  const response = data.json();
+  return response;
+};
+
+  return {addScore, showScores};
 })();
 
 export default ApiHandling;
