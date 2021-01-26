@@ -8,14 +8,14 @@ class ScoreScene extends Phaser.Scene {
   }
 
   async create() {
-    try{
+    try {
       const data = await ApiHandling.showScores();
-      const {result: results} = data;
+      const { result: results } = data;
       console.log(results);
       let k = 0;
-      for(let row of results) {
-          this.add.text(
-          config.width/ 2,
+      for (const row of results) {
+        this.add.text(
+          config.width / 2,
           config.height / 2 + k,
           `${row.user}: ${row.score}`,
           {
@@ -25,8 +25,7 @@ class ScoreScene extends Phaser.Scene {
         );
         k += 50;
       }
-    }
-    catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }

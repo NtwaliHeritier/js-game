@@ -2,16 +2,16 @@ import 'phaser';
 import config from '../Config/config';
 
 export default class InputScene extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super('Input');
   }
 
-  preload () {
+  preload() {
     // load images
     this.load.image('logo', 'assets/logo.png');
   }
 
-  create () {
+  create() {
     this.playerName = this.add.text(
       config.width / 2 - 300,
       280,
@@ -57,4 +57,4 @@ export default class InputScene extends Phaser.Scene {
       }
     };
   }
-};
+}

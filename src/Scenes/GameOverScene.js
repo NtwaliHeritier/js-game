@@ -20,8 +20,8 @@ export default class GameOverScene extends Phaser.Scene {
       },
     );
 
-    this.restartButton = new Button(this, config.width/2, config.height/2 - 50, 'blueButton1', 'blueButton2', 'Restart', 'Game');
+    this.restartButton = new Button(this, config.width / 2, config.height / 2 - 50, 'blueButton1', 'blueButton2', 'Restart', 'Game');
 
-    this.menuButton = new Button(this, config.width/2, config.height/2 + 100, 'blueButton1', 'blueButton2', 'Main Menu', 'Title');
+    this.menuButton = new Button(this, config.width / 2, config.height / 2 + 100, 'blueButton1', 'blueButton2', 'Main Menu', 'Title');
   }
 }
