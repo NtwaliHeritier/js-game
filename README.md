@@ -36,7 +36,7 @@ To move the player:
 
 ## Live Demo
 
-[Live demo](https://khalilhamdii.github.io/zombie_apocalypse/)
+[Live demo](https://raw.githack.com/NtwaliHeritier/js-game/feature-branch/index.html/)
 
 ## Screenshots
 
