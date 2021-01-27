@@ -100,7 +100,7 @@ export default class WorldScene extends Phaser.Scene {
     this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
   }
 
-  update(time, delta) {
+  update() {
     this.player.body.setVelocity(0);
 
     // Horizontal movement

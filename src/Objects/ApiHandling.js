@@ -14,8 +14,7 @@ const ApiHandling = (() => {
       },
     )
       .then((response) => {
-        const data = response.json();
-        return data;
+        return  response.json();
       })
       .then((json) => json)
       .catch((err) => err);
@@ -23,8 +22,7 @@ const ApiHandling = (() => {
 
   const showScores = async () => {
     const data = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/moPgZTWHxTnA8yxsQQ79/scores/');
-    const response = data.json();
-    return response;
+    return data.json();;
   };
 
   return { addScore, showScores };
