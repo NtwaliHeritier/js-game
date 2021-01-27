@@ -5,13 +5,8 @@
 		"transform": {
 			"^.+\\.js?$": "babel-jest"
 		},
-		"setupFiles": [
-			"jest-canvas-mock"
-		],
-		"moduleFileExtensions": [
-			"js",
-			"jsx"
-		],
+		"setupFiles": [ "jest-canvas-mock" ],
+		"moduleFileExtensions": [ "js", "jsx" ],
 		"moduleNameMapper": {
 			"\\.(css|less|sass|scss)$": "<rootDir>/src/_test_/mocks/styleMock.js",
 			"\\.(gif|ttf|eot|svg|png|ogg|wav|mp3)$": "<rootDir>/src/_test_/mocks/fileMock.js"
@@ -57,10 +52,6 @@
 		"jest-canvas-mock": "^2.3.0",
 		"raw-loader": "^3.1.0",
 		"style-loader": "^2.0.0",
-		"stylelint": "^13.3.3",
-		"stylelint-config-standard": "^20.0.0",
-		"stylelint-csstree-validator": "^1.9.0",
-		"stylelint-scss": "^3.17.2",
 		"terser-webpack-plugin": "^2.2.1",
 		"ts-jest": "^26.4.4",
 		"webpack": "^4.41.2",
