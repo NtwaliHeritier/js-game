@@ -8,7 +8,7 @@
 
 ## Game Design Document
 
-[Game Design Document](./GAME_DESIGN_DOCUMENT.md)
+[Game Design Document](./documentation.md)
 
 ## Library Directory 📙
 
